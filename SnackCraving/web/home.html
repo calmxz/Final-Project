@@ -8,9 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="app.js"></script>
 </head>
-<body class="flex h-screen bg-gray-50">
+<body class="flex flex-col md:flex-row h-screen bg-gray-50">
     <!-- Side Navigation Bar -->
-    <nav class="bg-gray-800 text-white w-64">
+    <nav class="bg-gray-800 text-white w-full md:w-64 md:h-screen overflow-y-auto">
         <div class="p-4">
             <h1 class="text-2xl font-semibold text-yellow-300">SnackCraving Admin</h1>
         </div>
@@ -22,7 +22,7 @@
             </li>
             <li id="customer-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
                 <a href="#" onclick="loadCustomer('customers.html')" class="flex items-center hover:cursor-pointer">
-                    <i class="fa-solid fa-users mr-2"></i></i> Customers
+                    <i class="fa-solid fa-users mr-2"></i> Customers
                 </a>
             </li>
             <li id="transaction-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
