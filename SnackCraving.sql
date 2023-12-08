@@ -5,7 +5,7 @@ USE sc_db;
 #user role table (admin or customer/user)
 CREATE TABLE IF NOT EXISTS user_role (
     role_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    role_name VARCHAR(10) NOT NULL
+    role_name VARCHAR(15) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
 
 #user table
@@ -16,10 +16,10 @@ CREATE TABLE IF NOT EXISTS users(
 	last_name VARCHAR(50) NOT NULL,
 	username VARCHAR(25) NOT NULL UNIQUE,
 	hashed_password VARCHAR(255) NOT NULL UNIQUE,
+	email VARCHAR(100) NOT NULL UNIQUE,
 	phone VARCHAR(15) NOT NULL UNIQUE,
 	role_id INT,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	FOREIGN KEY (role_id) REFERENCES user_role(role_id) ON UPDATE CASCADE ON DELETE SET NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
 
@@ -27,16 +27,24 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS product_status(
 	status_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	food_status VARCHAR(20) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
+
+#category of product e.g. Burger, Fries
+CREATE TABLE IF NOT EXISTS category(
+	product_category_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	product_category VARCHAR(50) NOT NULL UNIQUE
+);
 
 #product table
 CREATE TABLE IF NOT EXISTS product(
 	product_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	product_name VARCHAR(100) UNIQUE NOT NULL,
-	price DECIMAL(10, 2),
+	product_category_id INT,
+	price DECIMAL(10, 2) NOT NULL,
 	stock_quantity INT NOT NULL,
 	status_id INT,
-	FOREIGN KEY (status_id) REFERENCES product_status(status_id) ON UPDATE CASCADE ON DELETE SET NULL
+	FOREIGN KEY (status_id) REFERENCES product_status(status_id) ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY (product_category_id) REFERENCES category(product_category_id) ON UPDATE CASCADE ON DELETE SET NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #order of customers
@@ -65,4 +73,16 @@ CREATE TABLE IF NOT EXISTS transactions(
 INSERT INTO user_role(role_name)
 VALUES('admin'), ('customer');
 
+INSERT INTO product_status(food_status)
+VALUES ('Available'), ('Not availaible');
+
+INSERT INTO category(product_category)
+VALUES('Burger'), ('Fries'), ('Pasta'), ('Sundae'), ('Tea'), ('Drinks');
+
 INSERT INTO orders (total_amount) VALUES (0.00);
+
+INSERT INTO users(first_name, last_name, username, hashed_password, email, phone, role_id) 
+VALUES('Jean', 'Valjean', 'Prisoner 24601', '$2y$10$wq4aJjJL1zoKODk5ZJKwrubT83poCYMn4rsARA3stzkZUQrTv8NXq', 'jean.valjean@lorma.edu', '0987654321', '1');
+
+INSERT INTO product(product_name, product_category_id, price, stock_quantity, status_id)
+VALUES ('Cheeseburger', '1', 120.00, 150, '1'); 
