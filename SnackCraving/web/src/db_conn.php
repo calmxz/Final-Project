@@ -1,7 +1,3 @@
-/**
-* PHP code for database connection
- */
-
 <?php
 $servername = "localhost";
 $database = "sc_db";
@@ -10,8 +6,8 @@ $password = "1234";
 
 try {
     $conn = new mysqli($servername, $username, $password, $database);
-    if ($db->connect_error) {
-        die("Connection failed: " . $db->connect_error);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
     
 } catch (Exception $e) {
