@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS product_status(
 CREATE TABLE IF NOT EXISTS category(
 	product_category_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	product_category VARCHAR(50) NOT NULL UNIQUE
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #product table
 CREATE TABLE IF NOT EXISTS product(
@@ -77,12 +77,20 @@ INSERT INTO product_status(food_status)
 VALUES ('Available'), ('Not availaible');
 
 INSERT INTO category(product_category)
-VALUES('Burger'), ('Fries'), ('Pasta'), ('Sundae'), ('Tea'), ('Drinks');
+VALUES
+('Burger'), 
+('Fries'), 
+('Pasta'), 
+('Sundae'), 
+('Tea'), 
+('Drinks');
 
 INSERT INTO orders (total_amount) VALUES (0.00);
 
-INSERT INTO users(first_name, last_name, username, hashed_password, email, phone, role_id) 
-VALUES('Jean', 'Valjean', 'Prisoner 24601', '$2y$10$wq4aJjJL1zoKODk5ZJKwrubT83poCYMn4rsARA3stzkZUQrTv8NXq', 'jean.valjean@lorma.edu', '0987654321', '1');
-
 INSERT INTO product(product_name, product_category_id, price, stock_quantity, status_id)
-VALUES ('Cheeseburger', '1', 120.00, 150, '1'); 
+VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
+('Bacon Ranch Fries', '2', 125.00, 180, '1'),
+('Carbonara', '3', 150.00, 120, '1'),
+('Classic Hot Fudge', '4', 45.00, 100, '2'),
+('Matcha Latte', '5', 130.00, 150, '1'),
+('Coke', '6', 50.00, 300, '1');
