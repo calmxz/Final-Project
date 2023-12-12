@@ -1,11 +1,11 @@
 <?php
 // Include the file for fetching products
-include 'src/fetch_products.php';
+include 'backend/fetch_products.php';
 
 // Include the file for handling search logic
-include 'src/search_products.php';
+include 'backend/search_products.php';
 
-include 'src/change_status.php'
+include 'backend/change_status.php'
 ?>
 <!-- Main Content -->
 <!-- Dashboard -->
@@ -79,5 +79,5 @@ include 'src/change_status.php'
         </table>
     </div>
 </div>
-<script src="search_product.js"></script>
-<script src="change_status.js"></script>
+<script src="backend/search_product.js"></script>
+<script src="backend/change_status.js"></script>
