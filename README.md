@@ -5,5 +5,5 @@ General theme: E-commerce system with database
 App: SnackCraving
 Description: A food delivery app focusing on snacks like hamburger, fries, etc.
 Languages used: 
-Web: HTML, CSS(Tailwind), JavaScript, PHP(Backend)
+Web: HTML (could be changed to php), CSS(Tailwind), JavaScript, PHP(Backend)
 Mobile: React Native

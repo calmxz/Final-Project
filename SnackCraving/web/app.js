@@ -83,3 +83,4 @@ function loadAdmin(page){
         })
         .catch(error => console.error('Error:', error));
 }
+

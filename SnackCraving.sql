@@ -50,31 +50,22 @@ CREATE TABLE IF NOT EXISTS product(
 #order of customers
 CREATE TABLE IF NOT EXISTS orders(
 	order_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	total_amount DECIMAL(10, 2),
-	date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-#past transactions/successful transactions
-CREATE TABLE IF NOT EXISTS transactions(
-	transaction_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	order_id INT,
 	product_id INT,
 	user_id INT,
 	quantity INT NOT NULL,
 	amount_paid DECIMAL(10, 2),
-	subtotal DECIMAL(10, 2),
+	total_amount DECIMAL(10, 2),
 	change_amount DECIMAL(10, 2),
 	date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO user_role(role_name)
 VALUES('admin'), ('customer');
 
 INSERT INTO product_status(food_status)
-VALUES ('Available'), ('Not availaible');
+VALUES ('Available'), ('Not available');
 
 INSERT INTO category(product_category)
 VALUES
@@ -85,7 +76,7 @@ VALUES
 ('Tea'), 
 ('Drinks');
 
-INSERT INTO orders (total_amount) VALUES (0.00);
+INSERT INTO orders (total_amount, quantity) VALUES (0.00, 1);
 
 INSERT INTO product(product_name, product_category_id, price, stock_quantity, status_id)
 VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
@@ -94,3 +85,7 @@ VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
 ('Classic Hot Fudge', '4', 45.00, 100, '2'),
 ('Matcha Latte', '5', 130.00, 150, '1'),
 ('Coke', '6', 50.00, 300, '1');
+
+CREATE VIEW food_menu AS SELECT product_id, product_name, product_category, price, stock_quantity, food_status FROM product 
+JOIN category ON product.product_category_id = category.product_category_id  JOIN product_status ON product.status_id = product_status.status_id
+ORDER BY product_id;
