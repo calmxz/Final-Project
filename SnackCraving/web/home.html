@@ -10,6 +10,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="search_product.js"></script>
 </head>
 
 <body class="flex flex-col md:flex-row h-screen bg-gray-50">
@@ -26,7 +28,7 @@
                 </a>
             </li>
             <li id="menu-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="#" onclick="loadMenu('menu.html')" class="flex items-center hover:cursor-pointer">
+                <a href="#" onclick="loadMenu('menu.php')" class="flex items-center hover:cursor-pointer">
                     <img src="src/icons/menu.png" alt="Menu icon" class="w-6 h-6 mr-2" /> Menu
                 </a>
             </li>
@@ -52,50 +54,7 @@
     <!-- Main Content -->
     <!-- Dashboard -->
     <div id="content" class="flex-1 p-8">
-        <h1 class="text-3xl font-semibold">PRODUCTS</h1>
-
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            Product name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Stock Quantity
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    include 'src\fetch_products.php';
-
-                    foreach ($data as $index => $row) {
-                        echo "<tr class='odd:bg-white even:bg-gray-200 border-b'>";
-                        echo "<th scope='row' class='px-6 py-4 font-medium whitespace-nowrap'>" . $row['product_name'] . "</th>";
-                        echo "<td class='px-6 py-4'>" . $row['product_category'] . "</td>";
-                        echo "<td class='px-6 py-4'>₱" . $row['price'] . "</td>";
-                        echo "<td class='px-6 py-4'>" . $row['stock_quantity'] . "</td>";
-                        echo "<td class='px-6 py-4'>" . $row['food_status'] . "</td>";
-                        echo "<td class='px-6 py-4'><a href='#' class='font-medium text-blue-600 hover:underline'>Edit</a></td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+        <h1 class="text-3xl font-semibold">DASHBOARD</h1>
     </div>
 
 

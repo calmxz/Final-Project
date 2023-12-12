@@ -2,10 +2,6 @@
 // Include the database connection file
 include 'db_conn.php';
 
-// Virtual table creation query
-$viewsql = "CREATE VIEW food_menu AS SELECT product_name, product_category, price, stock_quantity, food_status FROM product 
-JOIN category ON product.product_category_id = category.product_category_id  JOIN product_status ON product.status_id = product_status.status_id";
-
 // Fetch data from the menu view
 $sql = "SELECT * FROM food_menu";
 $result = $conn->query($sql);
