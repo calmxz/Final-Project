@@ -63,7 +63,7 @@ include 'backend/search_products.php';
             <tbody>
                 <?php
                 foreach ($data as $index => $row) {
-                    echo "<tr class='odd:bg-white even:bg-gray-200 border-b hover:bg-gray-100'>";
+                    echo "<tr class='odd:bg-white even:bg-gray-100 border-b hover:bg-gray-200'>";
                     echo "<td class='px-6 py-4 hidden'>" . $row['product_id'] . "</td>";
                     echo "<th scope='row' class='px-6 py-4 font-medium whitespace-nowrap'>" . $row['product_name'] . "</th>";
                     echo "<td class='px-6 py-4'>" . $row['product_category'] . "</td>";

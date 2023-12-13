@@ -12,8 +12,13 @@ function addProduct() {
         success: function (data) {
             console.log('Product added successfully:', data);
 
-            // Redirect to menu.php with a fragment identifier to scroll to the bottom
-            window.location.href = 'http://localhost/Final-Project/SnackCraving/web/frontend/#';
+            if (data === 'existing') {
+                productForm.reset();
+                alert('Product already exists. Please choose a different name.');
+            } else {
+                // Redirect to menu.php with a fragment identifier to scroll to the bottom
+                window.history.back();
+            }
         },
         error: function (error) {
             console.error('Error adding product:', error);
