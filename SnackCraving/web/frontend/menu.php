@@ -33,63 +33,60 @@ include 'backend/search_products.php';
             </div>
         </div>
 
-        <!-- Table Container -->
-        <div class="max-w-full overflow-x-auto overflow-y-auto">
-            <table id="product-table" class="w-full text-sm text-left text-gray-900">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                    <tr>
+        <table id="product-table" class="w-full text-sm text-left text-gray-900">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                <tr>
+                    <th scope="col" class="hidden px-6 py-3">
+                        ID
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Product name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Category
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Stock Quantity
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Status
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
 
-                        <th scope="col" class="hidden px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Product name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Category
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Stock Quantity
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
+            <tbody>
+                <?php
+                foreach ($data as $index => $row) {
+                    echo "<tr class='odd:bg-white even:bg-gray-200 border-b hover:bg-gray-100'>";
+                    echo "<td class='px-6 py-4 hidden'>" . $row['product_id'] . "</td>";
+                    echo "<th scope='row' class='px-6 py-4 font-medium whitespace-nowrap'>" . $row['product_name'] . "</th>";
+                    echo "<td class='px-6 py-4'>" . $row['product_category'] . "</td>";
+                    echo "<td class='px-6 py-4'>₱" . $row['price'] . "</td>";
+                    echo "<td class='px-6 py-4'>" . $row['stock_quantity'] . "</td>";
 
-                <tbody>
-                    <?php
-                    foreach ($data as $index => $row) {
-                        echo "<tr class='odd:bg-white even:bg-gray-200 border-b hover:bg-gray-100'>";
-                        echo "<td class='px-6 py-4 hidden'>" . $row['product_id'] . "</td>";
-                        echo "<th scope='row' class='px-6 py-4 font-medium whitespace-nowrap'>" . $row['product_name'] . "</th>";
-                        echo "<td class='px-6 py-4'>" . $row['product_category'] . "</td>";
-                        echo "<td class='px-6 py-4'>₱" . $row['price'] . "</td>";
-                        echo "<td class='px-6 py-4'>" . $row['stock_quantity'] . "</td>";
+                    $foodStatus = $row['food_status'];
+                    $buttonClass = $foodStatus === 'Available' ? 'bg-green-500' : 'bg-red-500';
 
-                        $foodStatus = $row['food_status'];
-                        $buttonClass = $foodStatus === 'Available' ? 'bg-green-500' : 'bg-red-500';
-
-                        echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['product_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass' onclick='changeStatus(this)'>" . $foodStatus . "</button></td>";
-                        echo "<td class='px-6 py-4'>
+                    echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['product_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass' onclick='changeStatus(this)'>" . $foodStatus . "</button></td>";
+                    echo "<td class='px-6 py-4'>
             <button type='button' class='text-blue-600 hover:underline' onclick='editProduct(" . $row['product_id'] . ")'>Edit</button>
             <button type='button' class='text-red-600 hover:underline' onclick='deleteProduct(" . $row['product_id'] . ")'>Delete</button>
           </td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </div>
+</div>
 
-    <?php
-    include 'backend/change_status.php';
-    include 'backend/add_product.php';
-    ?>
+<?php
+include 'backend/change_status.php';
+include 'backend/add_product.php';
+?>
