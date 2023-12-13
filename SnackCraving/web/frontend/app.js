@@ -1,6 +1,7 @@
-//windows.addEventListener("DOMContentLoaded", loadCustomers);
-
 function loadHome(page) {
+    if (page){
+        page.preventDefault();
+    }
     // Set the active class for the home navbar item
     document.getElementById('home-nav').classList.add('active', 'bg-gray-950');
     document.getElementById('menu-nav').classList.remove('active', 'bg-gray-950');
@@ -18,6 +19,9 @@ function loadHome(page) {
 }
 
 function loadMenu(page){
+    if (page){
+        page.preventDefault();
+    }
     document.getElementById('menu-nav').classList.add('active', 'bg-gray-950');
     document.getElementById('home-nav').classList.remove('active', 'bg-gray-950');
     document.getElementById('customer-nav').classList.remove('active', 'bg-gray-950');
@@ -34,6 +38,9 @@ function loadMenu(page){
 }
 
 function loadCustomer(page) {
+    if (page){
+        page.preventDefault();
+    }
     // Set the active class for the customer navbar item
     document.getElementById('customer-nav').classList.add('active', 'bg-gray-950');
     document.getElementById('home-nav').classList.remove('active', 'bg-gray-950');
@@ -51,6 +58,9 @@ function loadCustomer(page) {
 }
 
 function loadTransaction(page){
+    if (page){
+        page.preventDefault();
+    }
     // Set the active class for the transaction navbar item
     document.getElementById('transaction-nav').classList.add('active', 'bg-gray-950');
     document.getElementById('menu-nav').classList.remove('active', 'bg-gray-950');
@@ -68,6 +78,9 @@ function loadTransaction(page){
 }
 
 function loadAdmin(page){
+    if (page){
+        page.preventDefault();
+    }
     // Set the active class for the admin navbar item
     document.getElementById('admin-nav').classList.add('active', 'bg-gray-950');
     document.getElementById('menu-nav').classList.remove('active', 'bg-gray-950');

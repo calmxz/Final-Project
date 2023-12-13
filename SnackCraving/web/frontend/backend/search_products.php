@@ -38,7 +38,5 @@ if (isset($_POST['searchTerm'])) {
 
     // Close the database connection
     mysqli_close($conn);
-} else {
-    echo "Search term not provided.";
 }
 ?>

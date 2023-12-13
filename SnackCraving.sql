@@ -59,7 +59,22 @@ CREATE TABLE IF NOT EXISTS orders(
 	date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
+
+CREATE TABLE IF NOT EXISTS cart(
+	cart_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	order_id INT,
+	product_id INT,
+	user_id INT,
+	quantity INT NOT NULL,
+	amount_paid DECIMAL(10, 2),
+	total_amount DECIMAL(10, 2),
+	change_amount DECIMAL(10, 2),
+	date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
 
 INSERT INTO user_role(role_name)
 VALUES('admin'), ('customer');
@@ -87,5 +102,4 @@ VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
 ('Coke', '6', 50.00, 300, '1');
 
 CREATE VIEW food_menu AS SELECT product_id, product_name, product_category, price, stock_quantity, food_status FROM product 
-JOIN category ON product.product_category_id = category.product_category_id  JOIN product_status ON product.status_id = product_status.status_id
-ORDER BY product_id;
+JOIN category ON product.product_category_id = category.product_category_id  JOIN product_status ON product.status_id = product_status.status_id;
