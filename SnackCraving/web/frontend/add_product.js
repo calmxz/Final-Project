@@ -3,6 +3,10 @@ function addProduct() {
     var productForm = document.getElementById('productForm');
     var formData = new FormData(productForm);
 
+    // Capitalize the first letter of the product name
+    var productName = formData.get('productName');
+    formData.set('productName', capitalizeFirstLetter(productName));
+
     $.ajax({
         url: 'backend/add_product.php', // Change the URL to your PHP script
         method: 'POST',
@@ -15,15 +19,17 @@ function addProduct() {
             if (data === 'existing') {
                 productForm.reset();
                 alert('Product already exists. Please choose a different name.');
-            } else {
-                // Redirect to menu.php with a fragment identifier to scroll to the bottom
-                window.history.back();
             }
         },
         error: function (error) {
             console.error('Error adding product:', error);
         },
     });
+}
+
+// Function to capitalize the first letter of a string
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // Function to populate the category dropdown
