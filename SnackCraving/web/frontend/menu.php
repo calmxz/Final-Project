@@ -1,5 +1,4 @@
 <?php
-include 'backend/db.conn.php';
 // Include the file for fetching products
 include 'backend/fetch_products.php';
 
@@ -8,7 +7,7 @@ include 'backend/search_products.php';
 ?>
 <!-- Main Content -->
 <!-- Menu -->
-<div id="content" class="flex-1 p-8">
+<div id="content" class="flex-1 p-8 ml-64"> <!-- Adjust margin to match the width of the nav -->
     <h1 class="text-3xl font-semibold">PRODUCTS</h1>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="flex pb-4 pt-4 bg-white">
@@ -41,19 +40,19 @@ include 'backend/search_products.php';
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Product name
+                        Product name <i id="nameSortIcon" class="fas fa-sort cursor-pointer"></i>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category
+                        Category <i id="categorySortIcon" class="fas fa-sort cursor-pointer"></i>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Price
+                        Price <i id="priceSortIcon" class="fas fa-sort cursor-pointer"></i>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Stock Quantity
+                        Stock Quantity <i id="quantitySortIcon" class="fas fa-sort cursor-pointer"></i>
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Status
+                        Status <i id="statusSortIcon" class="fas fa-sort cursor-pointer"></i>
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -76,8 +75,8 @@ include 'backend/search_products.php';
 
                     echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['product_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass' onclick='changeStatus(this)'>" . $foodStatus . "</button></td>";
                     echo "<td class='px-6 py-4'>
-            <button type='button' class='bg-blue-500 py-1.5 px-2 rounded-lg text-white' onclick='updateProduct(" . $row['product_id'] . ")'>Update</button>
-            <button type='button' class='bg-red-500 py-1.5 px-2 rounded-lg text-white' onclick='deleteProduct(" . $row['product_id'] . ")'>Delete</button>
+            <button type='button' class='text-blue-600 hover:underline' onclick='editProduct(" . $row['product_id'] . ")'>Edit</button>
+            <button type='button' class='text-red-600 hover:underline' onclick='deleteProduct(" . $row['product_id'] . ")'>Delete</button>
           </td>";
                     echo "</tr>";
                 }
