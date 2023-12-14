@@ -3,7 +3,10 @@
 include 'db_conn.php';
 
 // Fetch data from the menu view
-$sql = "SELECT * FROM food_menu";
+$sql = "SELECT p.product_id, p.product_name, c.product_category, p.price, p.stock_quantity, ps.food_status
+FROM product p
+LEFT JOIN category c ON p.product_category_id = c.product_category_id
+LEFT JOIN product_status ps ON p.status_id = ps.status_id";
 $result = $conn->query($sql);
 
 // Check if there are rows in the result

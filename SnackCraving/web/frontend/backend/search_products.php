@@ -8,9 +8,17 @@ if (isset($_POST['searchTerm'])) {
     $searchTerm = mysqli_real_escape_string($conn, $_POST['searchTerm']);
 
     // Your SQL query for searching products by name
-    $query = "SELECT * FROM food_menu WHERE product_name LIKE '%$searchTerm%' OR product_category LIKE '%$searchTerm%' OR price LIKE '%$searchTerm%' OR stock_quantity LIKE '%$searchTerm%' OR food_status LIKE '%$searchTerm%' ";
-    
-    $result = mysqli_query($conn, $query);
+    $searchQuery = "SELECT p.product_id, p.product_name, c.product_category, p.price, p.stock_quantity, ps.food_status
+                    FROM product p
+                    LEFT JOIN category c ON p.product_category_id = c.product_category_id
+                    LEFT JOIN product_status ps ON p.status_id = ps.status_id
+                    WHERE p.product_name LIKE '%$searchTerm%' 
+                    OR c.product_category LIKE '%$searchTerm%'
+                    OR p.price LIKE '%$searchTerm%' 
+                    OR p.stock_quantity LIKE '%$searchTerm%' 
+                    OR ps.food_status LIKE '%$searchTerm%'";
+
+    $result = mysqli_query($conn, $searchQuery);
 
     if ($result) {
         // Fetch the results into an array
@@ -18,7 +26,7 @@ if (isset($_POST['searchTerm'])) {
 
         // Generate HTML for the matched results
         foreach ($data as $index => $row) {
-            echo "<tr class='odd:bg-white even:bg-gray-200 border-b hover:bg-gray-100'>";
+            echo "<tr class='odd:bg-white even:bg-gray-100 border-b hover:bg-gray-200'>";
             echo "<td class='px-6 py-4 hidden'>" . $row['product_id'] . "</td>";
             echo "<th scope='row' class='px-6 py-4 font-medium whitespace-nowrap'>" . $row['product_name'] . "</th>";
             echo "<td class='px-6 py-4'>" . $row['product_category'] . "</td>";
@@ -27,9 +35,12 @@ if (isset($_POST['searchTerm'])) {
 
             $foodStatus = $row['food_status'];
             $buttonClass = $foodStatus === 'Available' ? 'bg-green-500' : 'bg-red-500';
-            echo "<td class='px-6 py-4'><button type='button' onclick=changeStatus(event) class='text-white p-2 rounded-lg py-2 px-3 $buttonClass'>" . $foodStatus . "</button></td>";
 
-            echo "<td class='px-6 py-4'><a href='#' class='font-medium text-blue-600 hover:underline'>Edit</a></td>";
+            echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['product_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass' onclick='changeStatus(this)'>" . $foodStatus . "</button></td>";
+            echo "<td class='px-6 py-4'>
+    <button type='button' class='text-blue-600 hover:underline' onclick='editProduct(" . $row['product_id'] . ")'>Edit</button>
+    <button type='button' class='text-red-600 hover:underline' onclick='deleteProduct(" . $row['product_id'] . ")'>Delete</button>
+  </td>";
             echo "</tr>";
         }
     } else {
@@ -39,4 +50,3 @@ if (isset($_POST['searchTerm'])) {
     // Close the database connection
     mysqli_close($conn);
 }
-?>
