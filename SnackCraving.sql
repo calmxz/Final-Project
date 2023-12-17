@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS cart(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
 
 INSERT INTO user_role(role_name)
-VALUES('admin'), ('customer');
+VALUES('Admin'), ('Customer');
 
 INSERT INTO product_status(food_status)
 VALUES ('Available'), ('Not available');
@@ -103,3 +103,6 @@ VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
 
 CREATE VIEW food_menu AS SELECT product_id, product_name, product_category, price, stock_quantity, food_status FROM product 
 JOIN category ON product.product_category_id = category.product_category_id  JOIN product_status ON product.status_id = product_status.status_id;
+
+CREATE VIEW app_users AS SELECT user_id, CONCAT_WS(" ", first_name, middle_name, last_name) AS full_name, username, hashed_password, email, phone, role_name, created_at FROM users
+LEFT JOIN user_role ON users.role_id = user_role.role_id;
