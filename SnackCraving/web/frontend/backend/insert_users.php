@@ -16,7 +16,7 @@ foreach ($users as $userData) {
     list($firstName, $middleName, $lastName, $username, $password, $email, $phone, $roleId) = $userData;
 
     // Hash the password before storing it in the database
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Perform the database insert
     $sql = "INSERT INTO users (first_name, middle_name, last_name, username, hashed_password, email, phone, role_id) 

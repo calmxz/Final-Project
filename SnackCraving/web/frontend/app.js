@@ -16,6 +16,16 @@ function loadHome(page) {
 }
 
 function loadMenu(page){
+    // Set the active class for the customer navbar item
+    document.getElementById('customer-nav').classList.add('active', 'bg-gray-950');
+    document.getElementById('home-nav').classList.remove('active', 'bg-gray-950');
+    document.getElementById('menu-nav').classList.remove('active', 'bg-gray-950');
+    document.getElementById('transaction-nav').classList.remove('active', 'bg-gray-950');
+    document.getElementById('admin-nav').classList.remove('active', 'bg-gray-950');
+
+    if(page){
+        page.preventDefault();
+    }
     document.getElementById('menu-nav').classList.add('active', 'bg-gray-950');
     document.getElementById('home-nav').classList.remove('active', 'bg-gray-950');
     document.getElementById('customer-nav').classList.remove('active', 'bg-gray-950');
@@ -31,7 +41,7 @@ function loadMenu(page){
         .catch(error => console.error('Error:', error));
 }
 
-function loadCustomer(page) {
+function loadUsers(page) {
     // Set the active class for the customer navbar item
     document.getElementById('customer-nav').classList.add('active', 'bg-gray-950');
     document.getElementById('home-nav').classList.remove('active', 'bg-gray-950');

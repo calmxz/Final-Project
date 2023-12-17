@@ -19,20 +19,6 @@ $sql = "SELECT * FROM food_menu";
 $result = $conn->query($sql);
 $totalRecords = $result->num_rows;
 
-// Apply sorting
-if (isset($_POST['order'])) {
-    $orderColumn = $columns[$_POST['order'][0]['column']];
-    $orderDirection = $_POST['order'][0]['dir'];
-    $sql .= " ORDER BY $orderColumn $orderDirection";
-}
-
-// Apply pagination
-if (isset($_POST['start'], $_POST['length'])) {
-    $start = $_POST['start'];
-    $length = $_POST['length'];
-    $sql .= " LIMIT $start, $length";
-}
-
 // Execute the SQL query
 $result = $conn->query($sql);
 
@@ -44,13 +30,4 @@ while ($row = $result->fetch_assoc()) {
 
 // Close the database connection
 $conn->close();
-
-// Prepare response for DataTables
-$response = array(
-    "data" => $data,
-    "recordsTotal" => $totalRecords,
-    "recordsFiltered" => $totalRecords,
-);
-
-echo json_encode($response);
 ?>

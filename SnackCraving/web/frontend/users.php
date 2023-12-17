@@ -9,9 +9,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="search_product.js"></script>
-    <script src="change_status.js"></script>
-    <script src="delete_product.js"></script>
+    <script src="search_user.js"></script>
+    <script src="delete_user.js"></script>
 </head>
 <body>
      <!-- Side Navigation Bar -->
@@ -26,12 +25,12 @@
                     <i class="fas fa-home mr-2"></i> Home
                 </a>
             </li>
-            <li id="menu-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900 active: bg-gray-950">
+            <li id="menu-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
                 <a href="menu.php" onclick="loadMenu('menu.php')" class="flex items-center hover:cursor-pointer">
                     <img src="backend/icons/menu.png" alt="Menu icon" class="w-6 h-6 mr-2" /> Menu
                 </a>
             </li>
-            <li id="customer-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900"> 
+            <li id="customer-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900 active: bg-gray-950"> 
                 <a href="users.php" onclick="loadUsers('users.php')" class="flex items-center hover:cursor-pointer">
                     <i class="fa-solid fa-users mr-2"></i> Users
                 </a>
@@ -43,16 +42,17 @@
                 </a>
             </li>
             <li id="admins.html" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="#" onclick="loadAdmin('admins.html')" class="flex items-center hover:cursor-pointer">
+                <a href="admins.html" onclick="loadAdmin('admins.html')" class="flex items-center hover:cursor-pointer">
                     <i class="fa-solid fa-user-tie mr-2"></i> Admins
                 </a>
             </li>
         </ul>
     </nav>
-<!-- Main Content -->
-<!-- Menu -->
+    
+    <!-- Main Content -->
+    <!-- Dashboard -->
 <div id="content" class="flex-1 p-8 ml-64"> <!-- Adjust margin to match the width of the nav -->
-    <h1 class="text-3xl font-semibold">PRODUCTS</h1>
+    <h1 class="text-3xl font-semibold">Users</h1>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="flex pb-4 pt-4 bg-white">
             <label for="table-search" class="sr-only">Search</label>
@@ -66,35 +66,41 @@
                 </div>
                 <input type="text" id="table-search"
                     class="block py-1.5 pl-10 text-base text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search for items">
+                    placeholder="Search for users">
                 <button class="bg-blue-500 ml-2 py-1.5 px-4 rounded-lg text-white"
-                    onclick="searchMenu(event)">Search</button>
+                    onclick="searchUser(event)">Search</button>
                 <!-- Added some margin and padding to align with the input -->
                 <button class="bg-blue-500 ml-80 py-1.5 px-4 rounded-lg text-white"
-                    onclick="redirectToAddProductForm('addProduct.html')">Add Product</button>
+                    onclick="redirectToAddUserForm('addUser.html')">Add Admin</button>
             </div>
         </div>
 
-        <table id="product-table" class="w-full text-sm text-left text-gray-900">
+        <table id="user-table" class="w-full text-sm text-left text-gray-900">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                 <tr>
                     <th scope="col" class="hidden px-6 py-3">
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Product name <i id="nameSortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Full Name 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category <i id="categorySortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Username 
+                    </th>
+                    <th scope="col" class="hidden px-6 py-3">
+                        Password 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Price <i id="priceSortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Email 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Stock Quantity <i id="quantitySortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Phone number 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Status <i id="statusSortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Role
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Date Created
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -104,23 +110,25 @@
 
             <tbody> 
                 <?php
-                // Include the file for fetching products
-                include 'backend/fetch_products.php';
+                // Include the file for fetching users
+                include 'backend/fetch_users.php';
                 foreach ($data as $index => $row) {
                     echo "<tr class='odd:bg-white even:bg-gray-100 border-b hover:bg-gray-200'>";
-                    echo "<td class='px-6 py-4 hidden'>" . $row['product_id'] . "</td>";
-                    echo "<th scope='row' class='px-6 py-4 font-medium whitespace-nowrap'>" . $row['product_name'] . "</th>";
-                    echo "<td class='px-6 py-4'>" . $row['product_category'] . "</td>";
-                    echo "<td class='px-6 py-4'>₱" . $row['price'] . "</td>";
-                    echo "<td class='px-6 py-4'>" . $row['stock_quantity'] . "</td>";
+                    echo "<td class='px-6 py-4 hidden'>" . $row['user_id'] . "</td>";
+                    echo "<th scope='row' class='px-6 py-4 font-medium whitespace-nowrap'>" . $row['full_name'] . "</th>";
+                    echo "<td class='px-6 py-4'>" . $row['username'] . "</td>";
+                    echo "<td class='px-6 py-4 hidden'>" . $row['hashed_password'] . "</td>";
+                    echo "<td class='px-6 py-4'>" . $row['email'] . "</td>";
+                    echo "<td class='px-6 py-4'>" . $row['phone'] . "</td>";
 
-                    $foodStatus = $row['food_status'];
-                    $buttonClass = $foodStatus === 'Available' ? 'bg-green-500' : 'bg-red-500';
+                    $roleName = $row['role_name'];
+                    $buttonClass = $roleName === 'Admin' ? 'bg-green-500' : 'bg-blue-500';
 
-                    echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['product_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass' onclick='changeStatus(this)'>" . $foodStatus . "</button></td>";
+                    echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['user_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass'>" . $roleName . "</button></td>";
+                    echo "<td class='px-6 py-4'>" . $row['created_at'] . "</td>";
                     echo "<td class='px-6 py-4'>
-                    <button type='button' data-id='" . $row['product_id'] . "' class='bg-blue-600 text-white p-2 rounded-lg py-2 px-3' onclick='updateButtonClick(this)'>Update</button>
-                    <button type='button' data-id='" . $row['product_id'] . "' class='bg-red-600 text-white p-2 rounded-lg py-2 px-3' onclick='deleteProduct(this)'>Delete</button>
+                    <button type='button' data-id='" . $row['user_id'] . "' class='bg-blue-600 text-white p-2 rounded-lg py-2 px-3' onclick='updateButtonClick(this)'>Update</button>
+                    <button type='button' data-id='" . $row['user_id'] . "' class='bg-red-600 text-white p-2 rounded-lg py-2 px-3' onclick='deleteUser(this)'>Delete</button>
           </td>";
                     echo "</tr>";
                 }
@@ -130,16 +138,17 @@
     </div>
 </div>
 <script>
-    function redirectToAddProductForm(page) {
-    window.location.href = page;
-}
-    // Function to handle the update button click in menu.php
+    function redirectToAddUserForm(page){
+        window.location.href = page;
+    }
+
+// Function to handle the update button click in menu.php
 function updateButtonClick(button) {
-    const isConfirmed = confirm("Are you sure you want to update this product?");
+    const isConfirmed = confirm("Are you sure you want to update this user?");
     
     if (isConfirmed) {
-        const productId = button.getAttribute('data-id');
-        window.location.href = `updateProduct.html?id=${productId}`;
+        const userId = button.getAttribute('data-id');
+        window.location.href = `updateUser.html?id=${userId}`;
     }
 }
 </script>
