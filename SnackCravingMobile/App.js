@@ -1,16 +1,10 @@
-// App.js
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import LandingPage from './LandingPage';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-const AppNavigator = createStackNavigator(
-  {
-    Home: LandingPage,
-    // Add more screens if needed
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-export default createAppContainer(AppNavigator);
+export default function App() {
+  return (
+    <NavigationContainer>{  }</NavigationContainer>
+  );
+}
