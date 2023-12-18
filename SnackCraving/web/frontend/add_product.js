@@ -43,7 +43,7 @@ function populateCategoryDropdown() {
         { id: 1, name: 'Burger' },
         { id: 2, name: 'Fries' },
         { id: 3, name: 'Pasta' },
-        { id: 4, name: 'Sundae' },
+        { id: 4, name: 'Ice Cream' },
         { id: 5, name: 'Tea' },
         { id: 6, name: 'Drinks' }
     ];

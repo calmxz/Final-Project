@@ -87,7 +87,7 @@ VALUES
 ('Burger'), 
 ('Fries'), 
 ('Pasta'), 
-('Sundae'), 
+('Ice Cream'), 
 ('Tea'), 
 ('Drinks');
 
@@ -95,11 +95,41 @@ INSERT INTO orders (total_amount, quantity) VALUES (0.00, 1);
 
 INSERT INTO product(product_name, product_category_id, price, stock_quantity, status_id)
 VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
+('Bacon-and-Kimchi', '1', 150.00, 150, '1'),
+('Chicken Burger', '1', 135.00, 150, '1'),
+('Surf and Turf Burger', '1', 180.00, 150, '1'),
+('BBQ Bacon Burger', '1', 170.00, 150, '1'),
+('Caprese Burger', '1', 195.00, 150, '1'),
+('Straight Cut Fries', '2', 80.00, 180, '1'),
+('Curly Fries', '2', 95.00, 180, '1'),
 ('Bacon Ranch Fries', '2', 125.00, 180, '1'),
+('Spicy Sriracha Fries', '2', 135.00, 180, '1'),
+('Buffalo Chicken Fries', '2', 150.00, 180, '1'),
+('Loaded Nacho Fries', '2', 145.00, 180, '1'),
+('Macaroni and Cheese', '3', 120.00, 120, '1'),
+('Chicken & Spaghetti', '3', 130.00, 120, '1'),
 ('Carbonara', '3', 150.00, 120, '1'),
+('Cajun Chicken Pasta', '3', 175.00, 120, '1'),
+('Lasagna', '3', 160.00, 120, '1'),
+('Fettuccine Alfredo', '3', 190.00, 120, '1'),
 ('Classic Hot Fudge', '4', 45.00, 100, '2'),
+('Strawberry Delight', '4', 55.00, 100, '2'),
+('Espresso Brownie', '4', 60.00, 100, '2'),
+('Pistachio Almond', '4', 85.00, 100, '2'),
+('Vanilla Dream', '4', 45.00, 100, '2'),
+('Cookies and Cream', '4', 55.00, 100, '2'),
+('Green Tea', '5', 110.00, 150, '1'),
+('Vanilla Chai', '5', 120.00, 150, '1'),
 ('Matcha Latte', '5', 130.00, 150, '1'),
-('Coke', '6', 50.00, 300, '1');
+('Japanese Sencha', '5', 145.00, 150, '1'),
+('Brown Sugar Milk Tea', '5', 135.00, 150, '1'),
+('Thai Milk Tea', '5', 150.00, 150, '1'),
+('Coke', '6', 50.00, 300, '1'),
+('Coke Zero', '6', 60.00, 300, '1'),
+('Pepsi', '6', 55.00, 300, '1'),
+('Iced Coffee', '6', 75.00, 300, '1'),
+('Caramel Macchiato', '6', 90.00, 300, '1'),
+('Spanish Latte', '6', 105.00, 300, '1');
 
 CREATE VIEW food_menu AS SELECT product_id, product_name, product_category, price, stock_quantity, food_status FROM product 
 JOIN category ON product.product_category_id = category.product_category_id  JOIN product_status ON product.status_id = product_status.status_id;
