@@ -27,6 +27,12 @@ function addProduct() {
     });
 }
 
+
+// Function to capitalize the first letter of a string
+function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function loadMenu(page){  
     fetch(page)
         .then (response => response.text())
@@ -35,12 +41,6 @@ function loadMenu(page){
             document.getElementById('content').innerHTML = content;
         })
         .catch(error => console.error('Error:', error));
-}
-
-
-// Function to capitalize the first letter of a string
-function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // Function to populate the category dropdown
