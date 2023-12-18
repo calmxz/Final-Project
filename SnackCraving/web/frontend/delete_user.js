@@ -10,7 +10,7 @@ function deleteUser(button){
             data: { userId: userId },
             success: function(response){
                 alert(response);
-                window.reload();    
+                window.location.reload();    
             },
             error: function(error){
                 console.error(error);
