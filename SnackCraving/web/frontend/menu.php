@@ -16,9 +16,11 @@
 <body>
      <!-- Side Navigation Bar -->
      <nav class="fixed bg-gray-800 text-white w-64 h-full overflow-y-auto">
-        <div class="p-4">
-            <h1 class="text-2xl font-semibold text-yellow-300"> <i class="fa-solid fa-burger text-yellow-500"></i>
-                SnackCraving</h1>
+     <div class="p-4">
+            <h1 class="text-2xl font-semibold text-yellow-300 flex items-center"> 
+                <img src="backend\icons\S.C. LOGO (1).png" alt="App logo" class="w-16 h-16 mr-2 ">
+                SnackCraving
+            </h1>
         </div>
         <ul>
             <li id="home-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
