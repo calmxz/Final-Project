@@ -30,20 +30,11 @@ function addProduct() {
     });
 }
 
-
 // Function to capitalize the first letter of a string
 function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function loadMenu(page){  
-    fetch(page)
-        .then (response => response.text())
-        .then (data => {
-            const content = new DOMParser().parseFromString(data, 'text/html').querySelector('#content').innerHTML;
-            document.getElementById('content').innerHTML = content;
-        })
-        .catch(error => console.error('Error:', error));
+    return str.replace(/\b\w/g, function (match) {
+        return match.toUpperCase();
+    });
 }
 
 // Function to populate the category dropdown
