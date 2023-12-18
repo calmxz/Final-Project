@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "SnackCravingMobile",
+    "slug": "SnackCravingMobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "SnackCravingMobile"
+}

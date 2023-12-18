@@ -1,10 +1,54 @@
-<?php
-// Include the file for fetching products
-include 'backend/fetch_products.php';
-
-// Include the file for handling search logic
-include 'backend/search_products.php';
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="search_product.js"></script>
+    <script src="change_status.js"></script>
+    <script src="delete_product.js"></script>
+</head>
+<body>
+     <!-- Side Navigation Bar -->
+     <nav class="fixed bg-gray-800 text-white w-64 h-full overflow-y-auto">
+        <div class="p-4">
+            <h1 class="text-2xl font-semibold text-yellow-300"> <i class="fa-solid fa-burger text-yellow-500"></i>
+                SnackCraving</h1>
+        </div>
+        <ul>
+            <li id="home-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
+                <a href="home.html" onclick="loadHome('home.html')" class="flex items-center hover:cursor-pointer">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+            </li>
+            <li id="menu-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900 active: bg-gray-950">
+                <a href="menu.php" onclick="loadMenu('menu.php')" class="flex items-center hover:cursor-pointer">
+                    <img src="backend/icons/menu.png" alt="Menu icon" class="w-6 h-6 mr-2" /> Menu
+                </a>
+            </li>
+            <li id="customer-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900"> 
+                <a href="users.php" onclick="loadUsers('users.php')" class="flex items-center hover:cursor-pointer">
+                    <i class="fa-solid fa-users mr-2"></i> Users
+                </a>
+            </li>
+            <li id="transaction-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
+                <a href="transactions.html" onclick="loadTransaction('transactions.html')"
+                    class="flex items-center hover:cursor-pointer">
+                    <i class="fa-solid fa-money-bill mr-2"></i> Transactions
+                </a>
+            </li>
+            <li id="admins.html" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
+                <a href="#" onclick="loadAdmin('admins.html')" class="flex items-center hover:cursor-pointer">
+                    <i class="fa-solid fa-user-tie mr-2"></i> Admins
+                </a>
+            </li>
+        </ul>
+    </nav>
 <!-- Main Content -->
 <!-- Menu -->
 <div id="content" class="flex-1 p-8 ml-64"> <!-- Adjust margin to match the width of the nav -->
@@ -21,9 +65,8 @@ include 'backend/search_products.php';
                 <input type="text" id="table-search" class="block py-1.5 pl-10 text-base text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search for items">
                 <button class="bg-blue-500 ml-2 py-1.5 px-4 rounded-lg text-white" onclick="searchMenu(event)">Search</button>
                 <!-- Added some margin and padding to align with the input -->
-                <button class="bg-blue-500 ml-80 py-1.5 px-4 rounded-lg text-white" onclick="redirectToAddProductForm('addProduct.html')">Add Product</button>
-
-                <script defer src="redirectToAddProductForm.js"></script>
+                <button class="bg-blue-500 ml-80 py-1.5 px-4 rounded-lg text-white"
+                    onclick="redirectToAddProductForm('addProduct.html')">Add Product</button>
             </div>
         </div>
 
@@ -54,8 +97,10 @@ include 'backend/search_products.php';
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody> 
                 <?php
+                // Include the file for fetching products
+                include 'backend/fetch_products.php';
                 foreach ($data as $index => $row) {
                     echo "<tr class='odd:bg-white even:bg-gray-100 border-b hover:bg-gray-200'>";
                     echo "<td class='px-6 py-4 hidden'>" . $row['product_id'] . "</td>";
@@ -69,8 +114,8 @@ include 'backend/search_products.php';
 
                     echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['product_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass' onclick='changeStatus(this)'>" . $foodStatus . "</button></td>";
                     echo "<td class='px-6 py-4'>
-            <button type='button' class='bg-blue-600 text-white p-2 rounded-lg py-2 px-3' onclick='editProduct(" . $row['product_id'] . ")'>Update</button>
-            <button type='button' class='bg-red-600 text-white p-2 rounded-lg py-2 px-3' onclick='deleteProduct(" . $row['product_id'] . ")'>Delete</button>
+            <button type='button' class='text-blue-600 hover:underline' onclick='editProduct(" . $row['product_id'] . ")'>Edit</button>
+            <button type='button' class='text-red-600 hover:underline' onclick='deleteProduct(" . $row['product_id'] . ")'>Delete</button>
           </td>";
                     echo "</tr>";
                 }
@@ -79,8 +124,19 @@ include 'backend/search_products.php';
         </table>
     </div>
 </div>
-
-<?php
-include 'backend/change_status.php';
-include 'backend/add_product.php';
-?>
+<script>
+    function redirectToAddProductForm(page) {
+    window.location.href = page;
+}
+    // Function to handle the update button click in menu.php
+function updateButtonClick(button) {
+    const isConfirmed = confirm("Are you sure you want to update this product?");
+    
+    if (isConfirmed) {
+        const productId = button.getAttribute('data-id');
+        window.location.href = `updateProduct.html?id=${productId}`;
+    }
+}
+</script>
+</body>
+</html>

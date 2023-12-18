@@ -38,8 +38,8 @@ if (isset($_POST['searchTerm'])) {
 
             echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['product_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass' onclick='changeStatus(this)'>" . $foodStatus . "</button></td>";
             echo "<td class='px-6 py-4'>
-            <button type='button' class='bg-blue-600 text-white p-2 rounded-lg py-2 px-3' onclick='editProduct(" . $row['product_id'] . ")'>Update</button>
-            <button type='button' class='bg-red-600 text-white p-2 rounded-lg py-2 px-3' onclick='deleteProduct(" . $row['product_id'] . ")'>Delete</button>
+            <button type='button' data-id='" . $row['product_id'] . "' class='bg-blue-600 text-white p-2 rounded-lg py-2 px-3' onclick='updateButtonClick(this)'>Update</button>
+            <button type='button' data-id='" . $row['product_id'] . "' class='bg-red-600 text-white p-2 rounded-lg py-2 px-3' onclick='deleteProduct(this)'>Delete</button>
   </td>";
             echo "</tr>";
         }
@@ -50,3 +50,4 @@ if (isset($_POST['searchTerm'])) {
     // Close the database connection
     mysqli_close($conn);
 }
+?>

@@ -19,6 +19,9 @@ function addProduct() {
             if (data === 'existing') {
                 productForm.reset();
                 alert('Product already exists. Please choose a different name.');
+            }else{
+                window.location.href = 'menu.php';
+                alert('Product added successfully!');
             }
         },
         error: function (error) {

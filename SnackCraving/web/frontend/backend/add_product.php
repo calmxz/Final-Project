@@ -8,8 +8,8 @@ $productCategory = mysqli_real_escape_string($conn, $_POST['productCategory']);
 $productPrice = mysqli_real_escape_string($conn, $_POST['productPrice']);
 $stockQuantity = mysqli_real_escape_string($conn, $_POST['stockQuantity']);
 
-// Capitalize the first letter of the product name
-$productName = ucfirst($productName);
+// Capitalize the first letter of each word in the product name
+$productName = ucwords($productName);
 
 // Check if the product name already exists
 $checkQuery = "SELECT COUNT(*) as count FROM product WHERE product_name = '$productName'";

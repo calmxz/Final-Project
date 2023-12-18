@@ -10,9 +10,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="app.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="search_product.js"></script>
-    <script src="change_status.js"></script>
-    <script src="redirectToAddProductForm.js"></script>
 </head>
 
 <body class="flex md:flex-row h-screen bg-gray-50">
@@ -24,28 +21,28 @@
         </div>
         <ul>
             <li id="home-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900 active: bg-gray-950">
-                <a href="#" onclick="loadHome('home.html')" class="flex items-center hover:cursor-pointer">
+                <a href="home.html" onclick="loadHome('home.html')" class="flex items-center hover:cursor-pointer">
                     <i class="fas fa-home mr-2"></i> Home
                 </a>
             </li>
             <li id="menu-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="#" onclick="loadMenu('menu.php')" class="flex items-center hover:cursor-pointer">
+                <a href="menu.php" onclick="loadMenu('menu.php')" class="flex items-center hover:cursor-pointer">
                     <img src="backend/icons/menu.png" alt="Menu icon" class="w-6 h-6 mr-2" /> Menu
                 </a>
             </li>
-            <li id="customer-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="#" onclick="loadCustomer('customers.html')" class="flex items-center hover:cursor-pointer">
-                    <i class="fa-solid fa-users mr-2"></i> Customers
+            <li id="customer-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900"> 
+                <a href="users.php" onclick="loadUsers('users.php')" class="flex items-center hover:cursor-pointer">
+                    <i class="fa-solid fa-users mr-2"></i> Users
                 </a>
             </li>
             <li id="transaction-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="#" onclick="loadTransaction('transactions.html')"
+                <a href="transactions.html" onclick="loadTransaction('transactions.html')"
                     class="flex items-center hover:cursor-pointer">
                     <i class="fa-solid fa-money-bill mr-2"></i> Transactions
                 </a>
             </li>
-            <li id="admin-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="#" onclick="loadAdmin('admins.html')" class="flex items-center hover:cursor-pointer">
+            <li id="admins.html" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
+                <a href="admins.html" onclick="loadAdmin('admins.html')" class="flex items-center hover:cursor-pointer">
                     <i class="fa-solid fa-user-tie mr-2"></i> Admins
                 </a>
             </li>
@@ -60,13 +57,5 @@
 
 
 </body>
-
-<script>
-    // Function to redirect to home.html when the page is refreshed
-    window.onbeforeunload = function () {
-        window.location.href = 'home.html';
-    };
-</script>
-
 </html>
 
