@@ -82,19 +82,19 @@
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Product name <i id="nameSortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Product name 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Category <i id="categorySortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Category 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Price <i id="priceSortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Price 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Stock Quantity <i id="quantitySortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Stock Quantity 
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Status <i id="statusSortIcon" class="fas fa-sort cursor-pointer"></i>
+                        Status 
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
