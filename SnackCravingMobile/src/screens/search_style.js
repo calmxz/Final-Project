@@ -1,16 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container:{
-        width: "100%"
-    },
-    welcomeTxt:{
-        fontWeight: "bold",
-        fontSize: 35,
-        marginTop: 10,
-        color: "#000000",
-        marginHorizontal: 12
-    },
     searchContainer:{
         flexDirection: "row",
         justifyContent: "center",
@@ -37,6 +27,14 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         paddingHorizontal: 12
+    },
+    searchBtn:{
+        width: 50,
+        height: "100%",
+        borderRadius: 16,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#2A4D50"
     }
 })
 
