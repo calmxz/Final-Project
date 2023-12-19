@@ -45,21 +45,26 @@ CREATE TABLE IF NOT EXISTS product(
 	status_id INT,
 	FOREIGN KEY (status_id) REFERENCES product_status(status_id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (product_category_id) REFERENCES category(product_category_id) ON UPDATE CASCADE ON DELETE SET NULL
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-#order of customers
-CREATE TABLE IF NOT EXISTS orders(
-	order_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	product_id INT,
-	user_id INT,
-	quantity INT NOT NULL,
-	amount_paid DECIMAL(10, 2),
-	total_amount DECIMAL(10, 2),
-	change_amount DECIMAL(10, 2),
-	date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE SET NULL,
-	FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
+
+CREATE TABLE IF NOT EXISTS orders (
+    order_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    total_amount DECIMAL(10, 2),
+    date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
+
+CREATE TABLE IF NOT EXISTS order_details (
+    order_detail_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    unit_price DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE SET NULL,
+    FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
+
 
 CREATE TABLE IF NOT EXISTS cart(
 	cart_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -91,7 +96,7 @@ VALUES
 ('Tea'), 
 ('Drinks');
 
-INSERT INTO orders (total_amount, quantity) VALUES (0.00, 1);
+INSERT INTO orders (total_amount) VALUES (0.00);
 
 INSERT INTO product(product_name, product_category_id, price, stock_quantity, status_id)
 VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
@@ -121,7 +126,7 @@ VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
 ('Green Tea', '5', 110.00, 150, '1'),
 ('Vanilla Chai', '5', 120.00, 150, '1'),
 ('Matcha Latte', '5', 130.00, 150, '1'),
-('Japanese Sencha', '5', 145.00, 150, '1'),
+('Boba Tea', '5', 145.00, 150, '1'),
 ('Brown Sugar Milk Tea', '5', 135.00, 150, '1'),
 ('Thai Milk Tea', '5', 150.00, 150, '1'),
 ('Coke', '6', 50.00, 300, '1'),
