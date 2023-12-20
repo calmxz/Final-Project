@@ -9,7 +9,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>x
+    <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name='Bottom Navigation'

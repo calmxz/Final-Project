@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     cartCount:{
         position: "absolute",
         bottom: 16,
+        left: 12,
         width: 16,
         height: 16,
         borderRadius: 8,

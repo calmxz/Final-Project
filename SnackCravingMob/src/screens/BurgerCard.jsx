@@ -1,12 +1,12 @@
 import { TouchableOpacity, Text, View, Image } from 'react-native'
 import React from 'react'
-import styles from './categoryCard.style';
+import styles from './burgerCard.style';
 import { useNavigation } from "@react-navigation/native";
 
-const CategoryCard = () => {
-  const navigation = useNavigation();
+const BurgerCard = () => {
+    const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("Burger")}>
+    <TouchableOpacity onPress={()=>navigation.navigate("ProductDetails")}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
@@ -23,4 +23,4 @@ const CategoryCard = () => {
   )
 }
 
-export default CategoryCard
+export default BurgerCard

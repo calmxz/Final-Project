@@ -9,7 +9,7 @@ const Welcome = () => {
   return (
     <View>
         <View style={styles.container}>
-            <Text style={styles.welcomeTxt}> Categories </Text>
+            <Text style={styles.welcomeTxt}> Menu </Text>
         </View>
 
         <View style={styles.searchContainer}>
