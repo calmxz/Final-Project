@@ -2,7 +2,6 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image'
 import styles from './categoryCard.style';
-import burger from './images/caprese.jpg'
 
 const CategoryCard = () => {
   return (
