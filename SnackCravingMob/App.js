@@ -3,7 +3,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
 import BottomTabNavigation from "./src/navigation/BottomTabNavigation";
-import { Cart, Burger, ProductDetails } from "./src/screens";
+import {
+  Cart,
+  Burger,
+  Fries,
+  Pasta,
+  IceCream,
+  Tea,
+  Drinks,
+  ProductDetails,
+} from "./src/screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +41,36 @@ export default function App() {
         <Stack.Screen
           name="Burger"
           component={Burger}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Fries"
+          component={Fries}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Pasta"
+          component={Pasta}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Ice Cream"
+          component={IceCream}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Tea"
+          component={Tea}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Drinks"
+          component={Drinks}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

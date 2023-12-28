@@ -17,7 +17,7 @@ const styles = StyleSheet.create ({
         overflow: "hidden"
     },
     images: {
-        aspectRatio: 4/3,
+        aspectRatio: 1,
         resizeMode: 'cover',
         width: '100%',
         height: undefined

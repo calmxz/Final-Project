@@ -28,7 +28,7 @@ const ProductDetails = ({navigation}) => {
     </View>
 
         <Image
-            source={require('../images/burger/caprese.jpg')}
+            source={require('../../images/burger/caprese.jpg')}
             style={styles.image}
         />
 
