@@ -1,12 +1,25 @@
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import styles from "./tea.style"
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
 import TeaCard from './TeaCard'
 
 const Tea = () => {
-  const teaProducts = [1, 2, 3, 4, 5, 6]
+  const [teaProducts, setTeaProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchTeaProducts = async () => {
+            try {
+                const response = await axios.get(`http://192.168.1.246/Final-Project/backendMobile/fetch_tea.php`);
+                setTeaProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching tea products:', error);
+            }
+        };
+
+        fetchTeaProducts();
+    }, []);
+
   return (
     <View>
     <View style={styles.container}>
@@ -16,7 +29,7 @@ const Tea = () => {
     <View style={styles.containers}>
         <FlatList
         data={teaProducts}
-        renderItem = {({item}) => <TeaCard/>}
+        renderItem = {({item}) => <TeaCard product={item}/>}
         keyExtractor={item => item.id}
         numColumns={2}
         vertical 

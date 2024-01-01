@@ -102,6 +102,9 @@
                         Role
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Balance
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Date Created
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -127,6 +130,7 @@
                     $buttonClass = $roleName === 'Admin' ? 'bg-green-500' : 'bg-blue-500';
 
                     echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['user_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass'>" . $roleName . "</button></td>";
+                    echo "<td class='px-6 py-4'>₱" . $row['balance'] . "</td>";
                     echo "<td class='px-6 py-4'>" . $row['created_at'] . "</td>";
                     echo "<td class='px-6 py-4'>
                     <button type='button' data-id='" . $row['user_id'] . "' class='bg-blue-600 text-white p-2 rounded-lg py-2 px-3' onclick='updateButtonClick(this)'>Update</button>

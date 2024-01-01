@@ -11,6 +11,10 @@ import {
   IceCream,
   Tea,
   Drinks,
+  LoginPage,
+  Orders,
+  Favorites,
+  SignUp,
   ProductDetails,
 } from "./src/screens";
 
@@ -71,6 +75,30 @@ export default function App() {
         <Stack.Screen
           name="Drinks"
           component={Drinks}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Login"
+          component={LoginPage}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Orders"
+          component={Orders}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="Favorites"
+          component={Favorites}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

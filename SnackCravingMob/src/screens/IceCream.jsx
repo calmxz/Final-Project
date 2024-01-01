@@ -1,12 +1,24 @@
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import styles from "./iceCream.style"
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
 import IceCreamCard from './iceCreamCard'
 
 const IceCream = () => {
-  const iceCreamProducts = [1, 2, 3, 4, 5, 6]
+  const [iceCreamProducts, setIceCreamProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchIceCreamProducts = async () => {
+            try {
+                const response = await axios.get(`http://192.168.1.246/Final-Project/backendMobile/fetch_icecream.php`);
+                setIceCreamProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching ice cream products:', error);
+            }
+        };
+
+        fetchIceCreamProducts();
+    }, []);
   return (
     <View>
     <View style={styles.container}>
@@ -16,7 +28,7 @@ const IceCream = () => {
     <View style={styles.containers}>
         <FlatList
         data={iceCreamProducts}
-        renderItem = {({item}) => <IceCreamCard/>}
+        renderItem = {({item}) => <IceCreamCard product={item}/>}
         keyExtractor={item => item.id}
         numColumns={2}
         vertical 

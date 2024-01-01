@@ -14,19 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $searchKey = mysqli_real_escape_string($conn, $_GET['searchKey']);
 
         // Perform a search query based on the 'searchKey' parameter using a prepared statement
-        $query = "SELECT * FROM product WHERE product_name LIKE ?";
-        
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $searchKey);
-        $stmt->execute();
+        // Your SQL query for searching products by name
+        $searchQuery = "SELECT p.product_id, p.product_name, c.product_category, p.price, p.stock_quantity, ps.food_status
+                        FROM product p
+                        LEFT JOIN category c ON p.product_category_id = c.product_category_id
+                        LEFT JOIN product_status ps ON p.status_id = ps.status_id
+                        WHERE p.product_name LIKE '%$searchKey%'";
+
+        // Execute the query
+        $result = $conn->query($searchQuery);
 
         // Check for errors in the SQL query execution
-        if (!$stmt) {
+        if (!$result) {
             echo json_encode(array("error" => "Error in SQL query: " . $conn->error));
             die();
         }
-
-        $result = $stmt->get_result();
 
         $data = array();
         while ($row = $result->fetch_assoc()) {

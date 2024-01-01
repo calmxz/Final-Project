@@ -8,6 +8,10 @@ import Pasta from "./Pasta";
 import IceCream from "./IceCream";
 import Tea from "./Tea";
 import Drinks from "./Drinks";
+import LoginPage from "./LoginPage";
+import Orders from "./Orders";
+import Favorites from "./Favorites";
+import SignUp from "./SignUp";
 import ProductDetails from "./ProductDetails";
 
 export {
@@ -21,5 +25,9 @@ export {
     IceCream,
     Tea,
     Drinks,
+    LoginPage,
+    Orders,
+    Favorites,
+    SignUp,
     ProductDetails
 }

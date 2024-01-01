@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 12
     },
     containers: {
-        marginTop: 24, 
+        marginTop: 50, 
         marginLeft: 12,
     },
     separator: {

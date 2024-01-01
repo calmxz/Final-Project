@@ -6,7 +6,7 @@ include 'db_conn.php';
 if(isset($_POST['searchTerm'])){
     $searchTerm = mysqli_real_escape_string($conn, $_POST['searchTerm']);
 
-    $searchQuery = "SELECT user_id, CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name, username, hashed_password, email, phone, role_name, created_at 
+    $searchQuery = "SELECT user_id, CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name, username, hashed_password, email, phone, role_name, balance, created_at 
     FROM users
     LEFT JOIN user_role ON users.role_id = user_role.role_id
     WHERE CONCAT_WS(' ', first_name, middle_name, last_name) LIKE '%$searchTerm%'
@@ -14,6 +14,7 @@ if(isset($_POST['searchTerm'])){
     OR hashed_password LIKE '%$searchTerm%'
     OR email LIKE '%$searchTerm%'
     OR phone LIKE '%$searchTerm%'
+    OR balance LIKE '%$searchTerm%'
     OR role_name LIKE '%$searchTerm%'
     OR created_at LIKE '%$searchTerm%'";
 
@@ -35,10 +36,11 @@ if(isset($_POST['searchTerm'])){
             $buttonClass = $roleName === 'Admin' ? 'bg-green-500' : 'bg-blue-500';
 
             echo "<td class='px-6 py-4'><button type='button' data-id='" . $row['user_id'] . "' class='text-white p-2 rounded-lg py-2 px-3 $buttonClass'>" . $roleName . "</button></td>";
+            echo "<td class='px-6 py-4'>₱" . $row['balance'] . "</td>";
             echo "<td class='px-6 py-4'>" . $row['created_at'] . "</td>";
             echo "<td class='px-6 py-4'>
             <button type='button' data-id='" . $row['user_id'] . "' class='bg-blue-600 text-white p-2 rounded-lg py-2 px-3' onclick='updateButtonClick(this)'>Update</button>
-            <button type='button' data-id='" . $row['user_id'] . "' class='bg-red-600 text-white p-2 rounded-lg py-2 px-3' onclick='deleteProduct(this)'>Delete</button>
+            <button type='button' data-id='" . $row['user_id'] . "' class='bg-red-600 text-white p-2 rounded-lg py-2 px-3' onclick='deleteUser(this)'>Delete</button>
   </td>";
             echo "</tr>";
         }

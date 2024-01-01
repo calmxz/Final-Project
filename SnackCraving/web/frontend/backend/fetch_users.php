@@ -11,6 +11,7 @@ $columns = array(
     4 => 'phone',
     5 => 'role_name',
     6 => 'created_at',
+    7 => 'balance',
 );
 
 $userQuery = "SELECT * FROM app_users";

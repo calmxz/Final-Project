@@ -1,12 +1,24 @@
-import { View, Text, TouchableOpacity, FlatList } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList } from 'react-native';
 import styles from "./fries.style"
-import { Feather } from '@expo/vector-icons';
-import { useNavigation } from "@react-navigation/native";
+import axios from 'axios';
 import FriesCard from './FriesCard'
 
 const Fries = () => {
-  const friesProducts = [1, 2, 3, 4, 5, 6]
+  const [friesProducts, setFriesProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchFriesProducts = async () => {
+      try {
+        const response = await axios.get(`http://192.168.1.246/Final-Project/backendMobile/fetch_fries.php`)
+        setFriesProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching fries products:', error);
+      }
+    };
+
+    fetchFriesProducts();
+  }, []);
   return (
     <View>
     <View style={styles.container}>
@@ -16,7 +28,7 @@ const Fries = () => {
     <View style={styles.containers}>
         <FlatList
         data={friesProducts}
-        renderItem = {({item}) => <FriesCard/>}
+        renderItem = {({item}) => <FriesCard product={item}/>}
         keyExtractor={item => item.id}
         numColumns={2}
         vertical 

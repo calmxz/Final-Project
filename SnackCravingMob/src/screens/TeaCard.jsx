@@ -3,10 +3,10 @@ import React from 'react'
 import styles from './pastaCard.style';
 import { useNavigation } from "@react-navigation/native";
 
-const TeaCard = () => {
+const TeaCard = ({product}) => {
     const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("ProductDetails")}>
+    <TouchableOpacity onPress={()=>navigation.navigate("ProductDetails", {item: product})}>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
           <Image
@@ -16,7 +16,7 @@ const TeaCard = () => {
         </View>
 
         <View styles = {styles.details}>
-          <Text style = {styles.title}>Tea</Text>
+          <Text style = {styles.title}>{product.product_name}</Text>
         </View>
       </View>
     </TouchableOpacity>
