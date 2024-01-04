@@ -10,7 +10,7 @@ const Tea = () => {
     useEffect(() => {
         const fetchTeaProducts = async () => {
             try {
-                const response = await axios.get(`http://192.168.1.246/Final-Project/backendMobile/fetch_tea.php`);
+                const response = await axios.get(`http://192.168.1.117/Final-Project/backendMobile/fetch_tea.php`);
                 setTeaProducts(response.data);
             } catch (error) {
                 console.error('Error fetching tea products:', error);

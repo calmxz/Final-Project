@@ -10,7 +10,7 @@ const Drinks = () => {
   useEffect(() => {
     const fetchDrinksProducts = async () => {
       try {
-          const response = await axios.get(`http://192.168.1.246/Final-Project/backendMobile/fetch_drinks.php`);
+          const response = await axios.get(`http://192.168.1.117/Final-Project/backendMobile/fetch_drinks.php`);
           setDrinksProducts(response.data);
       } catch (error) {
         console.error('Error fetching drinks products:', error);

@@ -24,7 +24,7 @@
         <ul>
             <li id="home-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
                 <a href="home.html" onclick="loadHome('home.html')" class="flex items-center hover:cursor-pointer">
-                    <i class="fas fa-home mr-2"></i> Home
+                <i class="fa-solid fa-gauge mr-2"></i> Dashboard 
                 </a>
             </li>
             <li id="menu-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
@@ -38,14 +38,14 @@
                 </a>
             </li>
             <li id="transaction-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="transactions.html" onclick="loadTransaction('transactions.html')"
+                <a href="transactions.php" onclick="loadTransaction('transactions.php')"
                     class="flex items-center hover:cursor-pointer">
                     <i class="fa-solid fa-money-bill mr-2"></i> Transactions
                 </a>
             </li>
             <li id="admins.html" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
                 <a href="admins.html" onclick="loadAdmin('admins.html')" class="flex items-center hover:cursor-pointer">
-                    <i class="fa-solid fa-user-tie mr-2"></i> Admins
+                <i class="fa-solid fa-right-to-bracket mr-2"></i> Login
                 </a>
             </li>
         </ul>

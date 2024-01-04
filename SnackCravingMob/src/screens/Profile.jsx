@@ -32,17 +32,6 @@ const Profile = ({ navigation }) => {
     fetchData();
   }, [userLogin, userData]);
   
-  useEffect(() => {
-    const fetchData = async () => {
-      await checkExistingUser();
-      if (userLogin) {
-        fetchBalance();
-      }
-    };
-
-    fetchData();
-  }, [userLogin]);
-
   const rechargeBalance = async () => {
     if (!rechargeAmount || isNaN(rechargeAmount)) {
       Alert.alert("Invalid Amount", "Please enter a valid recharge amount.");
@@ -51,7 +40,7 @@ const Profile = ({ navigation }) => {
 
     try {
       const response = await axios.post(
-        "http://192.168.1.246/Final-Project/backendMobile/recharge_balance.php",
+        "http://192.168.1.117/Final-Project/backendMobile/recharge_balance.php",
         {
           user_id: userData.user_id,
           recharge_amount: parseFloat(rechargeAmount), // Parse to float for precision
@@ -108,7 +97,7 @@ const Profile = ({ navigation }) => {
 
     try {
       await AsyncStorage.multiRemove([userId, "id"]);
-      navigation.navigate("Home");
+      navigation.navigate("Login");
     } catch (error) {
       console.log("Error logging out the user:", error);
     }
@@ -139,7 +128,7 @@ const Profile = ({ navigation }) => {
       }
   
       const response = await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/getUserBalance.php',
+        'http://192.168.1.117/Final-Project/backendMobile/getUserBalance.php',
         {
           user_id: userData.user_id,
         }

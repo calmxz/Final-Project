@@ -10,7 +10,7 @@ const Pasta = () => {
     useEffect(() => {
         const fetchPastaProducts = async () => {
             try {
-                const response = await axios.get(`http://192.168.1.246/Final-Project/backendMobile/fetch_pasta.php`);
+                const response = await axios.get(`http://192.168.1.117/Final-Project/backendMobile/fetch_pasta.php`);
                 setPastaProducts(response.data);
             } catch (error) {
                 console.error('Error fetching pasta products:', error);

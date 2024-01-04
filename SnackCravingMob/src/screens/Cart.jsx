@@ -65,7 +65,7 @@ const Cart = ({navigation}) => {
       }
   
       const response = await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/getUserBalance.php',
+        'http://192.168.1.117/Final-Project/backendMobile/getUserBalance.php',
         {
           user_id: userData.user_id,
         }
@@ -84,7 +84,7 @@ const Cart = ({navigation}) => {
   const fetchCartItems = async () => {
     try {
       const response = await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/getCartItem.php',
+        'http://192.168.1.117/Final-Project/backendMobile/getCartItem.php',
         {
           user_id: userData.user_id,
         }
@@ -105,7 +105,7 @@ const Cart = ({navigation}) => {
   const handleDeleteItem = async (cartId) => {
     try {
       await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/deleteCartItem.php',
+        'http://192.168.1.117/Final-Project/backendMobile/deleteCartItem.php',
         { cart_id: cartId }
       );
       setCartItems(cartItems.filter((item) => item.cart_id !== cartId));
@@ -117,7 +117,7 @@ const Cart = ({navigation}) => {
   const handleUpdateQuantity = async (cartId, newQuantity, price) => {
     try {
       const response = await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/updateQuantity.php',
+        'http://192.168.1.117/Final-Project/backendMobile/updateQuantity.php',
         {
           cart_id: cartId,
           quantity: newQuantity,
@@ -150,7 +150,7 @@ const Cart = ({navigation}) => {
   const fetchTotalAmount = async () => {
     try {
       const response = await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/getTotalAmount.php',
+        'http://192.168.1.117/Final-Project/backendMobile/getTotalAmount.php',
         {
           user_id: userData.user_id,
         }
@@ -181,7 +181,7 @@ const Cart = ({navigation}) => {
   
     try {
       const response = await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/confirmOrder.php',
+        'http://192.168.1.117/Final-Project/backendMobile/confirmOrder.php',
         {
           cart_id: cartItems.length > 0 ? cartItems[0].cart_id : null,
           total_amount: totalAmount,
@@ -209,7 +209,7 @@ const Cart = ({navigation}) => {
 
   const isValidAmountPaid = () => {
     const parsedAmount = parseFloat(amountPaid);
-    return !isNaN(parsedAmount) && parsedAmount >= 0;
+    return !isNaN(parsedAmount) && parsedAmount >= totalAmount;
   };
 
   const renderItem = ({ item }) => (

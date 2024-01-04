@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
-$CN = mysqli_connect("192.168.1.246", "root", "1234", "sc_db", 3306);
+$CN = mysqli_connect("192.168.1.117", "root", "1234", "sc_db", 3306);
 
 if (!$CN) {
     die("Connection failed: " . mysqli_connect_error());

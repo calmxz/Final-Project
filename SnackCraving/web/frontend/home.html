@@ -24,7 +24,7 @@
         <ul>
             <li id="home-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900 active: bg-gray-950">
                 <a href="home.html" onclick="loadHome('home.html')" class="flex items-center hover:cursor-pointer">
-                    <i class="fas fa-home mr-2"></i> Home
+                    <i class="fa-solid fa-gauge mr-2"></i> Dashboard
                 </a>
             </li>
             <li id="menu-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
@@ -38,14 +38,14 @@
                 </a>
             </li>
             <li id="transaction-nav" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
-                <a href="transactions.html" onclick="loadTransaction('transactions.html')"
+                <a href="transactions.php" onclick="loadTransaction('transactions.php')"
                     class="flex items-center hover:cursor-pointer">
                     <i class="fa-solid fa-money-bill mr-2"></i> Transactions
                 </a>
             </li>
             <li id="admins.html" class="p-4 transition duration-300 ease-in-out hover:bg-gray-900">
                 <a href="admins.html" onclick="loadAdmin('admins.html')" class="flex items-center hover:cursor-pointer">
-                    <i class="fa-solid fa-user-tie mr-2"></i> Admins
+                    <i class="fa-solid fa-right-to-bracket mr-2"></i> Login
                 </a>
             </li>
         </ul>
@@ -54,10 +54,38 @@
     <!-- Main Content -->
     <!-- Dashboard -->
     <div id="content" class="flex-1 p-8 ml-64"> <!-- Adjust margin to match the width of the nav -->
-        <h1 class="text-3xl font-semibold">DASHBOARD</h1>
+        <h1 class="text-3xl font-semibold mb-8">DASHBOARD</h1>
+         <!-- Earnings (Monthly) Card Example -->
+         <div class="mb-8 flex flex-row">
+            <div class="mx-8 bg-[#e1e1d2] rounded-xl overflow-hidden shadow-lg w-2/4 h-36 text-center flex flex-col justify-center items-center p-11">
+                <div class="font-semibold text-2xl whitespace-nowrap">
+                    <p>Total users: <br> 114</p>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="mx-8 bg-[#e1e1d2] rounded-xl overflow-hidden shadow-lg w-2/4 h-36 text-center flex flex-col justify-center items-center p-11">
+                <div class="font-semibold text-2xl whitespace-nowrap">
+                    <p>Total revenue: <br> ₱25,000</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-row">
+            <div class="mx-8 bg-[#e1e1d2] rounded-xl overflow-hidden shadow-lg w-2/4 h-36 text-center flex flex-col justify-center items-center p-11">
+                <div class="font-semibold text-2xl whitespace-nowrap">
+                    <p>Sales this month: <br> ₱5,145</p>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="mx-8 bg-[#e1e1d2] rounded-xl overflow-hidden shadow-lg w-2/4 h-36 text-center flex flex-col justify-center items-center p-11">
+                <div class="font-semibold text-2xl whitespace-nowrap">
+                    <p>Sales last month: <br> ₱3,000</p>
+                </div>
+            </div>
+        </div>
     </div>
-
-
 </body>
 </html>
 

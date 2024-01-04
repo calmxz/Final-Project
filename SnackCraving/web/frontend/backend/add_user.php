@@ -11,6 +11,7 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the pas
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $phone = mysqli_real_escape_string($conn, $_POST['phone']);
 $roleId = 1; // Assuming role_id 1 is a default role (you can change this based on your roles)
+$balance = 0.00;
 
 // Check if the username, email, or phone already exists
 $checkQuery = "SELECT user_id, username, email, phone FROM users WHERE username = ? OR email = ? OR phone = ?";
@@ -40,11 +41,11 @@ if ($checkResult->num_rows > 0) {
     ));
 } else {
     // Insert the user into the database
-    $insertQuery = "INSERT INTO users (first_name, middle_name, last_name, username, hashed_password, email, phone, role_id) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $insertQuery = "INSERT INTO users (first_name, middle_name, last_name, username, hashed_password, email, phone, role_id, balance) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $insertStmt = $conn->prepare($insertQuery);
-    $insertStmt->bind_param('sssssssi', $firstName, $middleName, $lastName, $username, $password, $email, $phone, $roleId);
+    $insertStmt->bind_param('sssssssii', $firstName, $middleName, $lastName, $username, $password, $email, $phone, $roleId, $balance);
 
     if ($insertStmt->execute()) {
         echo json_encode(array(

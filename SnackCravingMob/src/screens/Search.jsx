@@ -14,7 +14,7 @@ const Search = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://192.168.1.246/Final-Project/backendMobile/search_products.php`, {
+      const response = await axios.get(`http://192.168.1.117/Final-Project/backendMobile/search_products.php`, {
         params: {
           searchKey: searchKey,
         },

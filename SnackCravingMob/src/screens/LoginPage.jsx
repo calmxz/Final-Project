@@ -50,7 +50,7 @@ const LoginPage = ({ navigation }) => {
     setLoader(true);
 
     try {
-        const response = await axios.post('http://192.168.1.246/Final-Project/backendMobile/login.php', values);
+        const response = await axios.post('http://192.168.1.117/Final-Project/backendMobile/login.php', values);
         const data = response.data;
 
         console.log('Response from backend:', data);

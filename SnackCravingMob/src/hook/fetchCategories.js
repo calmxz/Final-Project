@@ -11,7 +11,7 @@ const useFetchCategories = () => {
       setIsLoading(true);
 
       try {
-        const response = await axios.get('http://192.168.1.246/Final-Project/backendMobile/fetch_categories.php');
+        const response = await axios.get('http://192.168.1.117/Final-Project/backendMobile/fetch_categories.php');
         setData(response.data);
       } catch (error) {
         setError(error);

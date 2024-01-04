@@ -58,7 +58,7 @@ const Home = ({ navigation }) => {
       setLoading(true);
 
       const response = await axios.post(
-        'http://192.168.1.246/Final-Project/backendMobile/getCartCount.php',
+        'http://192.168.1.117/Final-Project/backendMobile/getCartCount.php',
         {
           user_id: userData.user_id,
         }

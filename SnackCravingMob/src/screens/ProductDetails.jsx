@@ -49,7 +49,7 @@ const ProductDetails = ({ route, navigation }) => {
   const handleAddToCart = async () => {
     try {
       const response = await axios.post(
-        "http://192.168.1.246/Final-Project/backendMobile/addToCart.php",
+        "http://192.168.1.117/Final-Project/backendMobile/addToCart.php",
         {
           user_id: userData.user_id,
           product_id: item.product_id,

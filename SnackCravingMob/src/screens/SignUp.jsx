@@ -50,7 +50,7 @@ const SignUp = ({navigation}) => {
   
     const invalidLogin = () => {
       Alert.alert(
-        "Invalid login details",
+        "Invalid signup details",
         "Please provide all required fields",
         [
           {
@@ -67,7 +67,7 @@ const SignUp = ({navigation}) => {
         setLoader(true);
         
         try {
-            const response = await axios.post('http://192.168.1.246/Final-Project/backendMobile/register.php', values);
+            const response = await axios.post('http://192.168.1.117/Final-Project/backendMobile/register.php', values);
             console.log('Registration response:', response.data);
     
             if (response.data.success) {

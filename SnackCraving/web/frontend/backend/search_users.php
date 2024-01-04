@@ -6,10 +6,10 @@ include 'db_conn.php';
 if(isset($_POST['searchTerm'])){
     $searchTerm = mysqli_real_escape_string($conn, $_POST['searchTerm']);
 
-    $searchQuery = "SELECT user_id, CONCAT_WS(' ', first_name, middle_name, last_name) AS full_name, username, hashed_password, email, phone, role_name, balance, created_at 
+    $searchQuery = "SELECT user_id, CONCAT_WS(' ', first_name, last_name) AS full_name, username, hashed_password, email, phone, role_name, balance, created_at 
     FROM users
     LEFT JOIN user_role ON users.role_id = user_role.role_id
-    WHERE CONCAT_WS(' ', first_name, middle_name, last_name) LIKE '%$searchTerm%'
+    WHERE CONCAT_WS(' ', first_name, last_name) LIKE '%$searchTerm%'
     OR username LIKE '%$searchTerm%'
     OR hashed_password LIKE '%$searchTerm%'
     OR email LIKE '%$searchTerm%'
