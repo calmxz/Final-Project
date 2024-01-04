@@ -31,6 +31,7 @@ if ($result->num_rows > 0) {
         // Include all user data in the response
         $userData = [
             "user_id" => $row['user_id'],
+            "first_name" => $row['first_name'],
             "username" => $row['username'],
             "email" => $row['email'],
             "phone" => $row['phone'],

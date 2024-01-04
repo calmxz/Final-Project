@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Alert } from 'react-native';
 import styles from "./iceCream.style"
 import axios from 'axios';
 import IceCreamCard from './iceCreamCard'

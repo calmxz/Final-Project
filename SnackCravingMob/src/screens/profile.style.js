@@ -56,7 +56,46 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 30,
         borderColor: "#83829A"
-    })
+    }),
+    modalContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+      },
+      modalContent: {
+        backgroundColor: "#fff",
+        padding: 20,
+        borderRadius: 10,
+        width: "80%",
+      },
+      modalText: {
+        fontSize: 18,
+        marginBottom: 10,
+      },
+      modalInput: {
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 15,
+      },
+      modalButtons: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+      },
+      modalButton: {
+        backgroundColor: "#2A4D50",
+        padding: 10,
+        borderRadius: 5,
+        flex: 1,
+        marginLeft: 5,
+      },
+      modalButtonText: {
+        color: "#fff",
+        textAlign: "center",
+        fontWeight: "bold",
+      },  
 });
 
 export default styles;

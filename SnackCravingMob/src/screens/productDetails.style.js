@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
     fontSize: 20 ,
     color: "white",
     textAlign: 'center'
-  }
+  },
+  
 });
 
 export default styles;

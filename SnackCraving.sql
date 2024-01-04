@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS users(
 	email VARCHAR(100) NOT NULL UNIQUE,
 	phone VARCHAR(15) NOT NULL UNIQUE,
 	role_id INT,
+	balance DECIMAL(10, 2) NOT NULL,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY (role_id) REFERENCES user_role(role_id) ON UPDATE CASCADE ON DELETE SET NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
@@ -50,33 +51,21 @@ CREATE TABLE IF NOT EXISTS product(
 CREATE TABLE IF NOT EXISTS orders (
     order_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
+    product_id INT,
+    quantity INT,
     total_amount DECIMAL(10, 2),
+    amount_paid DECIMAL (10,2),
+    change_amount DECIMAL (10, 2),
     date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
 
-CREATE TABLE IF NOT EXISTS order_details (
-    order_detail_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    order_id INT,
-    product_id INT,
-    quantity INT NOT NULL,
-    unit_price DECIMAL(10, 2),
-    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE SET NULL,
-    FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
-
-
 CREATE TABLE IF NOT EXISTS cart(
 	cart_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	order_id INT,
 	product_id INT,
 	user_id INT,
 	quantity INT NOT NULL,
-	amount_paid DECIMAL(10, 2),
 	total_amount DECIMAL(10, 2),
-	change_amount DECIMAL(10, 2),
-	date_ordered TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY(order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE SET NULL,
 	FOREIGN KEY (user_id) REFERENCES users(user_id) ON UPDATE CASCADE ON DELETE SET NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=UTF8MB4_UNICODE_CI;
@@ -139,5 +128,20 @@ VALUES ('Cheeseburger', '1', 120.00, 150, '1'),
 CREATE VIEW food_menu AS SELECT product_id, product_name, product_category, price, stock_quantity, food_status FROM product 
 JOIN category ON product.product_category_id = category.product_category_id  JOIN product_status ON product.status_id = product_status.status_id;
 
-CREATE VIEW app_users AS SELECT user_id, CONCAT_WS(" ", first_name, middle_name, last_name) AS full_name, username, hashed_password, email, phone, role_name, created_at FROM users
+CREATE VIEW app_users AS SELECT user_id, CONCAT_WS(" ", first_name, middle_name, last_name) AS full_name, username, hashed_password, email, phone, role_name, created_at, balance FROM users
 LEFT JOIN user_role ON users.role_id = user_role.role_id;
+
+CREATE VIEW user_cart AS 
+SELECT 
+    cart.cart_id,
+    product.product_name,
+    product.price,
+    users.username,
+    cart.quantity,
+    product.price * cart.quantity AS total_amount
+FROM 
+    cart
+LEFT JOIN 
+    product ON cart.product_id = product.product_id 
+LEFT JOIN 
+    users ON cart.user_id = users.user_id;
